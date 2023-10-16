@@ -19,6 +19,7 @@ const Page = () => {
       <Link href="/week2">Go to Week 2</Link>
       <Link href="/week3">Go to Week 3</Link>
       <Link href="/week4">Go to Week 4</Link>
+      <Link href="/week5">Go to Week 5</Link>
     </div>
   );
 };
