@@ -1,26 +1,27 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Hook for redirecting the user
+import { useNavigation } from 'next/navigation'; // Import useNavigation from next/navigation
 import NewItem from './new-item';
 import ItemList from './item-list';
 import MealIdeas from './meal-ideas';
 import { useUserAuth } from '../_utils/auth-context'; // Import the auth context hook
-import itemsData from './items.json';
 
 const Page = () => {
-  const [items, setItems] = useState(itemsData);
+  const [items, setItems] = useState([]); // Replace with your items data initialization if needed
   const [selectedItemName, setSelectedItemName] = useState("");
   const { user } = useUserAuth(); // Use the useUserAuth hook
-  const navigate = useNavigate(); // For programmatic navigation
+  const navigation = useNavigation(); // useNavigation from next/navigation
 
   // Redirect if not logged in
   useEffect(() => {
     if (!user) {
-      navigate('/'); // Redirect to the landing page
+      navigation.navigate('/'); // Redirect to the landing page using navigate
     }
-  }, [user, navigate]);
+    // Load items logic here if necessary
+  }, [user, navigation]);
 
-  // Rest of your existing handle functions...
+  // Add your existing handle functions here...
+  // Example: handleAddItem, handleItemSelect
 
   if (!user) {
     // Render nothing or a loading spinner
@@ -28,7 +29,6 @@ const Page = () => {
   }
 
   return (
-    // Your existing page JSX
     <main className="bg-black-100 p-4 flex">
       <div>
         <h1 className="text-2xl font-bold mb-4 text-indigo-400 flex-auto items-center">Shopping List</h1>
